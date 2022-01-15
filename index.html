@@ -289,9 +289,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-01-15 21:21:02 / Modified: 22:02:23" itemprop="dateCreated datePublished" datetime="2022-01-15T21:21:02+08:00">2022-01-15</time>
+      <time title="Created: 2022-01-15 21:21:02" itemprop="dateCreated datePublished" datetime="2022-01-15T21:21:02+08:00">2022-01-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-01-16 01:17:01" itemprop="dateModified" datetime="2022-01-16T01:17:01+08:00">2022-01-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -313,7 +319,158 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="CSS-神奇東東"><a href="#CSS-神奇東東" class="headerlink" title="CSS 神奇東東"></a>CSS 神奇東東</h1>
+          <h1 id="CSS-神奇東東"><a href="#CSS-神奇東東" class="headerlink" title="CSS 神奇東東"></a>CSS 神奇東東</h1><h2 id="形狀"><a href="#形狀" class="headerlink" title="形狀"></a>形狀</h2><h3 id="triangle"><a href="#triangle" class="headerlink" title="triangle"></a>triangle</h3><div style="width:0; height:0;border-left:50px solid transparent;border-right:50px solid transparent;border-bottom:100px solid white;"></div>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.triangle</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">border-left</span>: <span class="number">50px</span> solid transparent;</span><br><span class="line">    <span class="attribute">border-right</span>: <span class="number">50px</span> solid transparent;</span><br><span class="line">    <span class="attribute">border-bottom</span>: <span class="number">100px</span> solid white; <span class="comment">/*改成border-top會變成倒三角*/</span>&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Hexagon"><a href="#Hexagon" class="headerlink" title="Hexagon"></a>Hexagon</h3><style>
+    .hexagon{
+        width: 100px;
+        height: 57.735px;
+        background: blue;
+        position: relative;
+    }
+    .hexagon::before,.hexagon::after{
+        content: "";
+        position: absolute;
+        left:0;
+        width: 0;
+        height: 0;
+        border-left:50px solid transparent;
+        border-right: 50px solid transparent;
+    }
+    .hexagon::before{
+        top: -28.8675px;
+        border-bottom: 28.8675px solid blue;
+    }
+    .hexagon::after{
+        bottom: -28.8675px;
+        border-top: 28.8675px solid blue;
+    }
+</style>
+<br>
+<div class="hexagon"></div>
+<br><br>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.hexagon</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">57.735px</span>;</span><br><span class="line">    <span class="attribute">background</span>: blue;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.hexagon</span><span class="selector-pseudo">::before</span>,<span class="selector-class">.hexagon</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">border-left</span>:<span class="number">50px</span> solid transparent;</span><br><span class="line">    <span class="attribute">border-right</span>: <span class="number">50px</span> solid transparent;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.hexagon</span><span class="selector-pseudo">::before</span>&#123;</span><br><span class="line">    <span class="attribute">top</span>: -<span class="number">28.8675px</span>;</span><br><span class="line">    <span class="attribute">border-bottom</span>: <span class="number">28.8675px</span> solid blue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.hexagon</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">    <span class="attribute">bottom</span>: -<span class="number">28.8675px</span>;</span><br><span class="line">    <span class="attribute">border-top</span>: <span class="number">28.8675px</span> solid blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Nav-bar"><a href="#Nav-bar" class="headerlink" title="Nav bar??"></a>Nav bar??</h2><style>
+    .wrapper{
+        position: relative;
+    }
+    .button{
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap:24px;
+        height:80px;
+        width:230px;
+        padding: 0 30px;
+        border-radius: 10px;
+        color: #f7f7f7;
+        background: #322d3a;
+    }
+    .text{
+        font-size:19px;
+    }
+    .icon{
+        position: relative;
+        width:20px;
+        height:20px;
+    }
+    .input{
+        position:absolute;
+        transform: scale(0);
+    }
+    .menu{
+        overflow: hidden;
+        position: absolute;
+        z-index:1;
+        top:70px;
+        left:0;
+        width:100px;
+    }
+    .icon::before, icon::after{
+        content: "";
+        position: absolute;
+        top: 6px;
+        left:11px;
+        width:3px;
+        height:10px;
+        border-radius:1px;
+        background:#fff;
+        transition: all 0.3s;
+    }
+    icon::before{
+        transform: translate(-5px,0) rotate(-45deg);
+    }
+    icon::after{
+        transform: translate(0,0) rotate(45deg);
+    }
+    .menu ul{
+        width:100%;
+        margin:0;
+        padding:24px 0;
+        background: #1f1b25;
+        border-radius: 0 0 10px 10px;
+        transform: translateY(-100%);
+        list-style: none;
+        transition: all 0.3s;
+    }
+    .menu li{
+        display: flex;
+        align-items: center;
+        width:inherit;
+        padding: 0 10px;
+    }
+    .menu li:not(:last-child){
+        margin-bottom:6px;
+    }
+    .menu li>a{
+        display: flex;
+        align-items: center;
+        width:inherit;
+        height: 44px;
+        padding: 0 20px;
+        border-radius: 8px;
+        font-size:17px;
+        color: #f7f7f7;
+        cursor: pointer;
+        transition: all 0.25s;
+    }
+    .menu li>a:hover{
+        background: #312b3a;
+    }
+    input:checked ~ .menu ul{
+        transform: translateY(0);
+    }
+    input:checked ~ .button{
+        background: #4461fd;
+    }
+    input:checked ~ .button .icon::before{
+        transform: translate(-3px, 0) rotate(45deg) scaleY(2);
+    }
+    input:checked ~ .button .icon::after{
+        transform: translate(-3px, 0) rotate(45deg) scaleY(2);
+    }
+</style>
+<div class="wrapper">
+    <input type="checkbox" id="input" />
+    <label for="input" class="button">
+        <span class="text">
+            My setting
+        </span>
+        <span class="icon"></span>
+    </label>
+    <div class="menu">
+        <ul>
+            <li><a>Appearance</a></li>
+            <li><a>Account Privacy</a></li>
+            <li><a>Friend Request</a></li>
+        </ul>
+    </div>
+</div>
       
     </div>
 
