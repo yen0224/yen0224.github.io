@@ -21,12 +21,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"yenhsu.xyz","root":"/","images":"/images","scheme":"Gemini","darkmode":"dark","version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="HTTP&#x2F;3HyperText Transport Protocol v.3  HTTP歷史＆問題 HTTP&#x2F;3-QUIC  HTTP historyHTTP&#x2F;1.0 TCP在每次的請求、回應進行交握 response後即斷開  Note:在HTTP&#x2F;1之前還有HTTP&#x2F;0.9的存在，但因為只支援GET方法，一次能傳輸的資料有限，且已被廢除，故在這邊不提及HTTP&#x2F;1 是現行超文本傳輸協議中最舊的">
+<meta name="description" content="程式研究社110成發-HTTP&#x2F;3">
 <meta property="og:type" content="article">
 <meta property="og:title" content="程式研究社110成發-HTTP&#x2F;3">
 <meta property="og:url" content="https://yenhsu.xyz/%E7%A8%8B%E5%BC%8F%E7%A0%94%E7%A9%B6%E7%A4%BE110%E6%88%90%E7%99%BC-HTTP-3/index.html">
 <meta property="og:site_name" content="Salt&#39;s Developing Blog">
-<meta property="og:description" content="HTTP&#x2F;3HyperText Transport Protocol v.3  HTTP歷史＆問題 HTTP&#x2F;3-QUIC  HTTP historyHTTP&#x2F;1.0 TCP在每次的請求、回應進行交握 response後即斷開  Note:在HTTP&#x2F;1之前還有HTTP&#x2F;0.9的存在，但因為只支援GET方法，一次能傳輸的資料有限，且已被廢除，故在這邊不提及HTTP&#x2F;1 是現行超文本傳輸協議中最舊的">
+<meta property="og:description" content="程式研究社110成發-HTTP&#x2F;3">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://mdn.mozillademos.org/files/13727/HTTP1_x_Connections.png">
 <meta property="og:image" content="https://freecontent.manning.com/wp-content/uploads/HTTP-vs-with-Push-HTTP1.gif">
@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://i.imgur.com/fgzVVrV.png">
 <meta property="og:image" content="https://i.imgur.com/rxLTnx5.png">
 <meta property="article:published_time" content="2022-01-15T12:59:20.000Z">
-<meta property="article:modified_time" content="2022-01-15T13:10:04.303Z">
+<meta property="article:modified_time" content="2022-01-15T13:16:24.975Z">
 <meta property="article:author" content="Salt">
 <meta property="article:tag" content="web">
 <meta property="article:tag" content="protocol">
@@ -134,7 +134,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP-3"><span class="nav-number">1.</span> <span class="nav-text">HTTP&#x2F;3</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-history"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP history</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-1-0"><span class="nav-number">1.1.1.</span> <span class="nav-text">HTTP&#x2F;1.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-1-1"><span class="nav-number">1.1.2.</span> <span class="nav-text">HTTP&#x2F;1.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-1-1-1"><span class="nav-number">1.1.3.</span> <span class="nav-text">HTTP&#x2F;1.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-1-1-2"><span class="nav-number">1.1.4.</span> <span class="nav-text">HTTP&#x2F;1.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-2"><span class="nav-number">1.1.5.</span> <span class="nav-text">HTTP&#x2F;2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-3-1"><span class="nav-number">1.2.</span> <span class="nav-text">HTTP&#x2F;3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#QUIC"><span class="nav-number">1.2.1.</span> <span class="nav-text">QUIC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#QUIC%E5%B0%8F%E6%AA%94%E6%A1%88"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">QUIC小檔案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%A3%E7%B7%9A%E5%BB%BA%E7%AB%8B"><span class="nav-number">1.3.</span> <span class="nav-text">連線建立</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%B7%AF%E8%A4%87%E7%94%A8"><span class="nav-number">1.4.</span> <span class="nav-text">多路複用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%81%E5%8C%85%E9%81%BA%E5%A4%B1%E4%BF%AE%E5%BE%A9"><span class="nav-number">1.5.</span> <span class="nav-text">封包遺失修復</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Connection-Migration"><span class="nav-number">1.6.</span> <span class="nav-text">Connection Migration</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sum-up"><span class="nav-number">2.</span> <span class="nav-text">Sum up</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E6%96%87%E7%B6%B2%E5%9D%80"><span class="nav-number">3.</span> <span class="nav-text">本文網址</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Resource"><span class="nav-number">4.</span> <span class="nav-text">Resource</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A8%8B%E5%BC%8F%E7%A0%94%E7%A9%B6%E7%A4%BE110%E6%88%90%E7%99%BC-HTTP-3"><span class="nav-number">1.</span> <span class="nav-text">程式研究社110成發-HTTP&#x2F;3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP-3"><span class="nav-number">2.</span> <span class="nav-text">HTTP&#x2F;3</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-history"><span class="nav-number">2.1.</span> <span class="nav-text">HTTP history</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-1-0"><span class="nav-number">2.1.1.</span> <span class="nav-text">HTTP&#x2F;1.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-1-1"><span class="nav-number">2.1.2.</span> <span class="nav-text">HTTP&#x2F;1.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-1-1-1"><span class="nav-number">2.1.3.</span> <span class="nav-text">HTTP&#x2F;1.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-1-1-2"><span class="nav-number">2.1.4.</span> <span class="nav-text">HTTP&#x2F;1.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-2"><span class="nav-number">2.1.5.</span> <span class="nav-text">HTTP&#x2F;2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-3-1"><span class="nav-number">2.2.</span> <span class="nav-text">HTTP&#x2F;3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#QUIC"><span class="nav-number">2.2.1.</span> <span class="nav-text">QUIC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#QUIC%E5%B0%8F%E6%AA%94%E6%A1%88"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">QUIC小檔案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%A3%E7%B7%9A%E5%BB%BA%E7%AB%8B"><span class="nav-number">2.3.</span> <span class="nav-text">連線建立</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%B7%AF%E8%A4%87%E7%94%A8"><span class="nav-number">2.4.</span> <span class="nav-text">多路複用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%81%E5%8C%85%E9%81%BA%E5%A4%B1%E4%BF%AE%E5%BE%A9"><span class="nav-number">2.5.</span> <span class="nav-text">封包遺失修復</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Connection-Migration"><span class="nav-number">2.6.</span> <span class="nav-text">Connection Migration</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sum-up"><span class="nav-number">3.</span> <span class="nav-text">Sum up</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E6%96%87%E7%B6%B2%E5%9D%80"><span class="nav-number">4.</span> <span class="nav-text">本文網址</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Resource"><span class="nav-number">5.</span> <span class="nav-text">Resource</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -235,7 +235,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-01-15 20:59:20 / Modified: 21:10:04" itemprop="dateCreated datePublished" datetime="2022-01-15T20:59:20+08:00">2022-01-15</time>
+      <time title="Created: 2022-01-15 20:59:20 / Modified: 21:16:24" itemprop="dateCreated datePublished" datetime="2022-01-15T20:59:20+08:00">2022-01-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -257,7 +257,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="HTTP-3"><a href="#HTTP-3" class="headerlink" title="HTTP/3"></a>HTTP/3</h1><p>HyperText Transport Protocol v.3</p>
+        <h1 id="程式研究社110成發-HTTP-3"><a href="#程式研究社110成發-HTTP-3" class="headerlink" title="程式研究社110成發-HTTP/3"></a>程式研究社110成發-HTTP/3</h1><span id="more"></span>
+<h1 id="HTTP-3"><a href="#HTTP-3" class="headerlink" title="HTTP/3"></a>HTTP/3</h1><p>HyperText Transport Protocol v.3</p>
 <ul>
 <li>HTTP歷史＆問題</li>
 <li>HTTP/3-QUIC</li>

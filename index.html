@@ -217,7 +217,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-01-15 20:59:20 / Modified: 21:10:04" itemprop="dateCreated datePublished" datetime="2022-01-15T20:59:20+08:00">2022-01-15</time>
+      <time title="Created: 2022-01-15 20:59:20 / Modified: 21:16:24" itemprop="dateCreated datePublished" datetime="2022-01-15T20:59:20+08:00">2022-01-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -239,164 +239,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="HTTP-3"><a href="#HTTP-3" class="headerlink" title="HTTP/3"></a>HTTP/3</h1><p>HyperText Transport Protocol v.3</p>
-<ul>
-<li>HTTP歷史＆問題</li>
-<li>HTTP/3-QUIC</li>
-</ul>
-<h2 id="HTTP-history"><a href="#HTTP-history" class="headerlink" title="HTTP history"></a>HTTP history</h2><h3 id="HTTP-1-0"><a href="#HTTP-1-0" class="headerlink" title="HTTP/1.0"></a>HTTP/1.0</h3><ul>
-<li>TCP在每次的請求、回應進行交握</li>
-<li>response後即斷開</li>
-</ul>
-<p>Note:<br>在HTTP/1之前還有HTTP/0.9的存在，但因為只支援GET方法，一次能傳輸的資料有限，且已被廢除，故在這邊不提及<br>HTTP/1 是現行超文本傳輸協議中最舊的版本，他會在每一次的傳輸中進行交握，內容傳輸完成後即斷開TCP連線<br>雖然可以保障伺服器的資源，但對於內容豐富的網站傳輸時間就會比較久<br>再加上TCP的擁塞控制，會讓仔入速度更加的緩慢</p>
-<p><img src="https://mdn.mozillademos.org/files/13727/HTTP1_x_Connections.png"></p>
-<p>Note:<br>最左邊的那張就是Http1得傳輸情形，client端提出一次request前，都得先進行一次三向交握，server端傳完內容斷線又得建立一次4項的分手訊息，如此一來一往十分的浪費時間，故<br>我們有沒有辦法能向中間跟右邊的圖一樣<br>建立一個TCP連線，傳完所有request<br>甚至是一次傳送多個request呢</p>
-<h3 id="HTTP-1-1"><a href="#HTTP-1-1" class="headerlink" title="HTTP/1.1"></a>HTTP/1.1</h3><ul>
-<li>Keep-alive TCP connection </li>
-<li>HTTP pipelinig</li>
-</ul>
-<h3 id="HTTP-1-1-1"><a href="#HTTP-1-1-1" class="headerlink" title="HTTP/1.1"></a>HTTP/1.1</h3><p><img src="https://freecontent.manning.com/wp-content/uploads/HTTP-vs-with-Push-HTTP1.gif"><br>Note:<br>Keep-alive TCP connection 允許用戶端重複使用已建立TCP連線、可以減少初始連結的交握次數、減少因多個requests產生的slow start造成的影響<br>HTTP piplinig<br>允許多個requests同時送出，而傳輸過程中不需先等待伺服器的回應<br>一個包含有許多影象的網頁檔案的多個請求和應答可以在一個連線中傳輸，但每個單獨的網頁檔案的請求和應答仍然需要使用各自的連線<br>HTTP1.1允許requests重複利用已建立的TCP連線，這樣的機制可以減少交握的次數，以及受到TCP慢啟動機制的影響</p>
-<h3 id="HTTP-1-1-2"><a href="#HTTP-1-1-2" class="headerlink" title="HTTP/1.1"></a>HTTP/1.1</h3><ul>
-<li>雖然TCP可重複利用，但伺服器收到多個requests還是必須排序來傳輸<ul>
-<li>ＦＩＦＯ</li>
-<li>HTTP的隊頭阻塞問題 Head-of-line blocking</li>
-</ul>
-</li>
-</ul>
-<p>Note:<br>雖然TCP允許重複利用但在伺服器端每一個請求與回覆都還是要逐一個執行<br>若其中有一個http的處理時間太長，就會使得後面的風包無法被傳出或是處理，這就是所謂的http對頭阻塞問題<br>為解決這部分的問題，http/2變加入了「資料流」的概念，藉由控制各個封包的優先權，來實現一次傳送多個資料的</p>
-<h3 id="HTTP-2"><a href="#HTTP-2" class="headerlink" title="HTTP/2"></a>HTTP/2</h3><p><img src="https://freecontent.manning.com/wp-content/uploads/HTTP-vs-with-Push-HTTP2.gif"></p>
-<ul>
-<li>資料流stream的概念產生</li>
-<li>在同個TCP上允許多路復用 multiplexing</li>
-<li>以上解決了傳輸的效率問題</li>
-<li>還是有tcp 隊頭阻塞的問題<ul>
-<li>一個封包發生錯誤，需等待重傳造成全部的傳輸線路停止</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20191007/200893588ZjO4LvSOA.png"></p>
-<table>
-<thead>
-<tr>
-<th align="center">問題</th>
-<th align="center">HTTP/1</th>
-<th align="center">HTTP/1.1</th>
-<th align="center">HTTP/2</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">TCP single handshake</td>
-<td align="center">v</td>
-<td align="center">解決</td>
-<td align="center">解決</td>
-</tr>
-<tr>
-<td align="center">http 隊頭阻塞</td>
-<td align="center">v</td>
-<td align="center">v</td>
-<td align="center">解決</td>
-</tr>
-<tr>
-<td align="center">TCP隊頭阻塞</td>
-<td align="center">v</td>
-<td align="center">v</td>
-<td align="center">v</td>
-</tr>
-<tr>
-<td align="center">TCP重傳歧異</td>
-<td align="center">v</td>
-<td align="center">v</td>
-<td align="center">v</td>
-</tr>
-</tbody></table>
-<h2 id="HTTP-3-1"><a href="#HTTP-3-1" class="headerlink" title="HTTP/3"></a>HTTP/3</h2><h3 id="QUIC"><a href="#QUIC" class="headerlink" title="QUIC"></a>QUIC</h3><ul>
-<li>QUIC == <strong>Q</strong>uick <strong>U</strong>DP <strong>I</strong>nternet <strong>C</strong>onnection<br><img src="https://i.imgur.com/VkzLKvg.png"></li>
-</ul>
-<h4 id="QUIC小檔案"><a href="#QUIC小檔案" class="headerlink" title="QUIC小檔案"></a>QUIC小檔案</h4><ul>
-<li>QUIC不是首字母縮略字，而是本身就是協議名稱</li>
-<li>由Google團隊於2013年提出<ul>
-<li>以UDP傳輸機制作為基礎，在應用層加入功能</li>
-<li>在QUIC層實做出原本TCP有但UDP沒有的功能</li>
-</ul>
-</li>
-<li>2018年IETF將QUIC定為HTTP/3的傳輸協議標準，並加入TLS1.3的加密技術<br>Note:<br>Loss Recovery, Congestion Control<ul>
-<li>加入多路複用、降低連線交握的延遲、解決重傳歧異和支持 Connection Migration 的功能</li>
-</ul>
-</li>
-</ul>
-<p>![](<a target="_blank" rel="noopener" href="https://i.imgur.com/xMaBncy.png">https://i.imgur.com/xMaBncy.png</a> =600x)</p>
-<ul>
-<li>連線建立 Connection Establishment</li>
-<li>多路複用 Multiplexing</li>
-<li>封包遺失恢復 Loss Recovery</li>
-<li><del>流量控制 Flow Control</del></li>
-<li>連線遷徙 Connection Migration<br>Note:<br>流量控制的部分跟TCP大致相同，在建立stream時就會去設定傳輸時可允許的最大頻寬</li>
-</ul>
-<h2 id="連線建立"><a href="#連線建立" class="headerlink" title="連線建立"></a>連線建立</h2><p><img src="https://i.imgur.com/AzLcrh4.gif"><br>在初始的連結交握，就同時進行金鑰的交換<br>（相較TCP是先進行交握再進行TLS加密）</p>
-<p>Note:<br>相較http/2是依序建立TCP交握和TLS的加密cipher交換，Quic會在第一次的RTT就會進行秘藥的交換</p>
-<p><img src="https://miro.medium.com/max/700/1*oUWR-E2PqdhWvIyOBFSxVw.png"><br>Note:<br>詳細的交握過程<br>最左邊是首次進行交握，中間是0-RTT<br>server config服務端長期的ＤＨ供藥<br>certification chain<br>singnature of server config<br>source address token<br>（下頁是TCP+TLS1.2, TCP+TLS1.3 和Ｑuic的比較）</p>
-<p><img src="https://i.imgur.com/fgzVVrV.png"></p>
-<h2 id="多路複用"><a href="#多路複用" class="headerlink" title="多路複用"></a>多路複用</h2><p>因為使用的是UDP，UDP會把每一個封包視為相等（就算掉了也不知道），這個方法剛好可以解決TCP自HTTP/1以來一直未解決的隊頭阻塞問題。</p>
-<h2 id="封包遺失修復"><a href="#封包遺失修復" class="headerlink" title="封包遺失修復"></a>封包遺失修復</h2><ul>
-<li>RTT(Round Trip Time)：一個連接的往返時間，即數據發送時刻到接收到確認的時刻的差值；</li>
-<li>RTO(Retransmission Time Out)：重傳超時時間，即從數據發送時刻算起，超過這個時間便執行重傳, RTO協議實現值最小1s</li>
-<li>現行<ul>
-<li>發送端在發出的每一個封包上帶有一個標記sequence number，接收端收到封包後會回傳帶有對應編號的ACK封包給發送端，代表封包已被接收</li>
-<li>若發送端未收到ACK封包(RTO)，就會啟動重傳的機制</li>
-<li>重傳歧異問題<ul>
-<li>啟動重傳機制時，發送端發送的封包的sequence number是一樣的！！</li>
-<li>發送端在拿到編號N封包的回傳ACK時，將無法判斷這個帶有編號N的ACK，是接收端收到初始封包還是重傳封包的ACK</li>
-<li>影響TCP擁塞控制演算法對RTT的取樣，並有可能會使RTO被錯誤的放大，拉長之後封包重傳的反應時間</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>QUIC<ul>
-<li>發送端在傳送封包時，改用<strong>唯一而且嚴格遞增</strong>unique packet number，藉此判斷收到的ACK是來自初始封包或者是重傳封包</li>
-<li>接收端則是藉由封包內的 Stream ID 和 Stream Offset 的值，辨認封包是屬於哪一個 Stream，再依照每個封包的 Offset 將資料照順序重組。</li>
-</ul>
-</li>
-</ul>
-<h2 id="Connection-Migration"><a href="#Connection-Migration" class="headerlink" title="Connection Migration"></a>Connection Migration</h2><ul>
-<li>現行：<ul>
-<li>目前TCP連線需要<strong>來源IP、來源port、目標IP、目標port</strong>四個參數來區分收到的TCP是哪一個連線</li>
-<li>當client從WIFI網路遷移到4G網路時，原本的連線就已失效</li>
-</ul>
-</li>
-<li>QUIC<ul>
-<li>連線的識別方式改為採用一個64bit的獨特ID</li>
-<li>即使新發送封包的來源 IP 位址不同，接收端也可以透過 Connection ID 順利的識別新封包所歸屬的連線。</li>
-<li>原本正在傳遞中，存有舊 IP 的封包，也一樣也可以透過 Connection ID 來識別，正確的被接收端接收。</li>
-</ul>
-</li>
-</ul>
-<h1 id="Sum-up"><a href="#Sum-up" class="headerlink" title="Sum up"></a>Sum up</h1><p>簡單來說,QUIC可以</p>
-<ul>
-<li><p>在一個RTT中，同時達成交握＆加密傳輸，若先前有連過伺服，則可直接開始進行資料傳輸</p>
-</li>
-<li><p>在multiplexing中，不會因為單個stream發生錯誤造成全部傳輸終止,解決HOL問題</p>
-</li>
-<li><p>解決重傳歧異問題</p>
-</li>
-<li><p>解決連線遷移需重新交握問題</p>
-</li>
-<li><p>Chrome 和Firefox皆已支援使用QUIC的協議<br><img src="https://i.imgur.com/rxLTnx5.png"></p>
-</li>
-<li><p>Uber 有做過<a target="_blank" rel="noopener" href="https://eng.uber.com/employing-quic-protocol/">實驗文章</a>，比較有無QUIC的影響</p>
-</li>
-<li><p>理論上，應該會比較快，但有些ISP對UDP的支援不友善，可能會瘋狂丟包，所以載入速度非常的…</p>
-</li>
-</ul>
-<h1 id="本文網址"><a href="#本文網址" class="headerlink" title="本文網址"></a>本文網址</h1><p><a target="_blank" rel="noopener" href="https://hackmd.io/@yen0224/http3">https://hackmd.io/@yen0224/http3</a></p>
-<h1 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://medium.com/@chester.yw.chu/http-3-%E5%82%B3%E8%BC%B8%E5%8D%94%E8%AD%B0-quic-%E7%B0%A1%E4%BB%8B-5f8806d6c8cd">https://medium.com/@chester.yw.chu/http-3-%E5%82%B3%E8%BC%B8%E5%8D%94%E8%AD%B0-quic-%E7%B0%A1%E4%BB%8B-5f8806d6c8cd</a></li>
-<li><a target="_blank" rel="noopener" href="https://quicwg.org/base-drafts/draft-ietf-quic-http.html">https://quicwg.org/base-drafts/draft-ietf-quic-http.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.cloudflare.com/http3-the-past-present-and-future/">https://blog.cloudflare.com/http3-the-past-present-and-future/</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/129618/QUIC-authors-copy.pdf">https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/129618/QUIC-authors-copy.pdf</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.twblogs.net/a/5eff82845352062f754e61a1">https://www.twblogs.net/a/5eff82845352062f754e61a1</a></li>
-<li><a target="_blank" rel="noopener" href="https://freecontent.manning.com/animation-http-1-1-vs-http-2-vs-http-2-with-push/">https://freecontent.manning.com/animation-http-1-1-vs-http-2-vs-http-2-with-push/</a></li>
-</ul>
-
+          <h1 id="程式研究社110成發-HTTP-3"><a href="#程式研究社110成發-HTTP-3" class="headerlink" title="程式研究社110成發-HTTP/3"></a>程式研究社110成發-HTTP/3</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E7%A8%8B%E5%BC%8F%E7%A0%94%E7%A9%B6%E7%A4%BE110%E6%88%90%E7%99%BC-HTTP-3/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
