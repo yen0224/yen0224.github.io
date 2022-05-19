@@ -29,7 +29,7 @@
 <meta property="og:description" content="Web Security (by Splitline)的整理web 應用程式可簡易分成前端應用程式、後端應用程式、伺服器三部分，前端是以瀏覽器來解析資料並顯示給使用者的，後端是在伺服器上用來處理資料，包含伺服器軟體、資料庫系統及作業系統。  前端語言：HTML、CSS、JavaScript… 開發框架：Vue.js、React.js、Angular.js、jQuery…   後端語言：PHP、Py">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2020-01-15T13:23:15.000Z">
-<meta property="article:modified_time" content="2022-05-19T15:43:45.123Z">
+<meta property="article:modified_time" content="2022-05-19T16:02:19.049Z">
 <meta property="article:author" content="Salt">
 <meta property="article:tag" content="web">
 <meta property="article:tag" content="Security">
@@ -123,7 +123,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-Security-by-Splitline-%E7%9A%84%E6%95%B4%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">Web Security (by Splitline)的整理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-protocol-HyperText-Transfer-Protocol"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP protocol &#x3D; HyperText Transfer Protocol</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-Header"><span class="nav-number">1.1.1.</span> <span class="nav-text">HTTP Header</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie"><span class="nav-number">1.1.2.</span> <span class="nav-text">Cookie</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7"><span class="nav-number">1.2.</span> <span class="nav-text">工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#curl"><span class="nav-number">1.2.1.</span> <span class="nav-text">curl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Burpsuite"><span class="nav-number">1.2.2.</span> <span class="nav-text">Burpsuite</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Broken-Access-Control-gt-IDOR-Insecure-Direct-Object-Reference"><span class="nav-number">1.3.</span> <span class="nav-text">Broken Access Control &#x3D;&gt; IDOR, Insecure Direct Object Reference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Path-thaversal-LFI-local-file-inclusion"><span class="nav-number">1.4.</span> <span class="nav-text">Path thaversal &#x2F; LFI, local file inclusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XSS-Cross-Site-Scripting"><span class="nav-number">1.5.</span> <span class="nav-text">XSS, Cross Site Scripting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSRF"><span class="nav-number">1.6.</span> <span class="nav-text">CSRF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-Injection"><span class="nav-number">1.7.</span> <span class="nav-text">SQL Injection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL"><span class="nav-number">1.7.1.</span> <span class="nav-text">SQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NoSQL"><span class="nav-number">1.7.2.</span> <span class="nav-text">NoSQL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Command-Injection-RCE-Remote-Code-Execution"><span class="nav-number">1.8.</span> <span class="nav-text">Command Injection &#x2F; RCE, Remote Code Execution</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">2.</span> <span class="nav-text">reference:</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-Security-by-Splitline-%E7%9A%84%E6%95%B4%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">Web Security (by Splitline)的整理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-protocol-HyperText-Transfer-Protocol"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP protocol &#x3D; HyperText Transfer Protocol</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-Header"><span class="nav-number">1.1.1.</span> <span class="nav-text">HTTP Header</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie"><span class="nav-number">1.1.2.</span> <span class="nav-text">Cookie</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7"><span class="nav-number">1.2.</span> <span class="nav-text">工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#curl"><span class="nav-number">1.2.1.</span> <span class="nav-text">curl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Burpsuite"><span class="nav-number">1.2.2.</span> <span class="nav-text">Burpsuite</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Before-Attack"><span class="nav-number">2.</span> <span class="nav-text">Before Attack</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Recon"><span class="nav-number">2.1.</span> <span class="nav-text">Recon</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Attack"><span class="nav-number">3.</span> <span class="nav-text">Attack</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Broken-Access-Control-gt-IDOR-Insecure-Direct-Object-Reference"><span class="nav-number">3.1.</span> <span class="nav-text">Broken Access Control &#x3D;&gt; IDOR, Insecure Direct Object Reference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Path-thaversal-LFI-local-file-inclusion"><span class="nav-number">3.2.</span> <span class="nav-text">Path thaversal &#x2F; LFI, local file inclusion</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LFI"><span class="nav-number">3.2.1.</span> <span class="nav-text">LFI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XSS-Cross-Site-Scripting"><span class="nav-number">3.3.</span> <span class="nav-text">XSS, Cross Site Scripting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSRF"><span class="nav-number">3.4.</span> <span class="nav-text">CSRF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-Injection"><span class="nav-number">3.5.</span> <span class="nav-text">SQL Injection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL"><span class="nav-number">3.5.1.</span> <span class="nav-text">SQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NoSQL"><span class="nav-number">3.5.2.</span> <span class="nav-text">NoSQL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Command-Injection-RCE-Remote-Code-Execution"><span class="nav-number">3.6.</span> <span class="nav-text">Command Injection &#x2F; RCE, Remote Code Execution</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">4.</span> <span class="nav-text">reference:</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -230,7 +230,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-05-19 23:43:45" itemprop="dateModified" datetime="2022-05-19T23:43:45+08:00">2022-05-19</time>
+      <time title="Modified: 2022-05-20 00:02:19" itemprop="dateModified" datetime="2022-05-20T00:02:19+08:00">2022-05-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -277,7 +277,23 @@
 <li>可以用來發送HTTP請求，並且可以接收回應。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">curl [domain_with_protocol]</span><br><span class="line">- -i/--include  <span class="comment"># show response header</span></span><br><span class="line">- -v/--verbose  <span class="comment"># show verbose info</span></span><br><span class="line">- -d/==data [POST data]  <span class="comment"># POST data</span></span><br><span class="line">- -X/--request [<span class="string">&#x27;PATCH&#x27;</span>] <span class="comment"># HTTP method</span></span><br><span class="line">- -H/--header   <span class="comment">#Set header</span></span><br><span class="line">- -b/--cookie   <span class="comment">#Set Cookie</span></span><br><span class="line">- -o/--output   <span class="comment">#Set output file</span></span><br></pre></td></tr></table></figure>
 <h3 id="Burpsuite"><a href="#Burpsuite" class="headerlink" title="Burpsuite"></a>Burpsuite</h3></li>
 </ul>
-<h2 id="Broken-Access-Control-gt-IDOR-Insecure-Direct-Object-Reference"><a href="#Broken-Access-Control-gt-IDOR-Insecure-Direct-Object-Reference" class="headerlink" title="Broken Access Control =&gt; IDOR, Insecure Direct Object Reference"></a>Broken Access Control =&gt; IDOR, Insecure Direct Object Reference</h2><ul>
+<h1 id="Before-Attack"><a href="#Before-Attack" class="headerlink" title="Before Attack"></a>Before Attack</h1><h2 id="Recon"><a href="#Recon" class="headerlink" title="Recon"></a>Recon</h2><p>在攻擊之前先觀察建制環境，如前後端的編寫語言、語言版本、伺服器軟體、伺服器版本、伺服器環境、伺服器設定、伺服器資料庫、伺服器網域、伺服器網域等等。可以透過wrapperlyzer的plugin找出以上資訊。</p>
+<p>敏感檔案，(path traversal)</p>
+<ul>
+<li>robots.txt</li>
+<li>.htaccess</li>
+<li>.git</li>
+<li>.svn</li>
+<li>.DS_Store</li>
+<li>.gitignore</li>
+<li>.gitattributes</li>
+<li>.gitmodules</li>
+<li>.gitkeep</li>
+<li>.gitlab-ci.yml</li>
+<li>各種config檔案等</li>
+</ul>
+<p>有時候</p>
+<h1 id="Attack"><a href="#Attack" class="headerlink" title="Attack"></a>Attack</h1><h2 id="Broken-Access-Control-gt-IDOR-Insecure-Direct-Object-Reference"><a href="#Broken-Access-Control-gt-IDOR-Insecure-Direct-Object-Reference" class="headerlink" title="Broken Access Control =&gt; IDOR, Insecure Direct Object Reference"></a>Broken Access Control =&gt; IDOR, Insecure Direct Object Reference</h2><ul>
 <li>垂直越權：在未驗證使用者身份下，普通用戶卻可以存取管理員的資料<ul>
 <li>/admin_panel</li>
 <li>/admin</li>
@@ -285,9 +301,35 @@
 </li>
 <li>水平越權：使用者可存取其他人的資料<ul>
 <li>/myAccount?user=5</li>
-<li>/myAccount?user=6<h2 id="Path-thaversal-LFI-local-file-inclusion"><a href="#Path-thaversal-LFI-local-file-inclusion" class="headerlink" title="Path thaversal / LFI, local file inclusion"></a>Path thaversal / LFI, local file inclusion</h2>利用相對路徑來存取其他目錄的檔案<h2 id="XSS-Cross-Site-Scripting"><a href="#XSS-Cross-Site-Scripting" class="headerlink" title="XSS, Cross Site Scripting"></a>XSS, Cross Site Scripting</h2>因輸入未經過驗證，使使用者可以輸入攻擊性的程式碼<h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><h2 id="SQL-Injection"><a href="#SQL-Injection" class="headerlink" title="SQL Injection"></a>SQL Injection</h2><h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3><h3 id="NoSQL"><a href="#NoSQL" class="headerlink" title="NoSQL"></a>NoSQL</h3><h2 id="Command-Injection-RCE-Remote-Code-Execution"><a href="#Command-Injection-RCE-Remote-Code-Execution" class="headerlink" title="Command Injection / RCE, Remote Code Execution"></a>Command Injection / RCE, Remote Code Execution</h2><h1 id="reference"><a href="#reference" class="headerlink" title="reference:"></a>reference:</h1></li>
+<li>/myAccount?user=6<h2 id="Path-thaversal-LFI-local-file-inclusion"><a href="#Path-thaversal-LFI-local-file-inclusion" class="headerlink" title="Path thaversal / LFI, local file inclusion"></a>Path thaversal / LFI, local file inclusion</h2><blockquote>
+<p>利用相對路徑來存取其他目錄的檔案<br>發生原因：路徑參數沒有做限制，導致可以遍歷任何目錄，常發生在<em><strong>下載、讀檔功能</strong></em></p>
+</blockquote>
+</li>
 </ul>
 </li>
+<li>./</li>
+<li>../</li>
+<li>../../../../../../../../etc/passwd</li>
+<li>..\..\..\..\..\windows\win.ini</li>
+<li>history files</li>
+<li>config files</li>
+<li>key files<ul>
+<li>.htaccess</li>
+<li>/etc/passwd</li>
+</ul>
+</li>
+<li>source code</li>
+<li>有些網站會產生在tmp目錄，則去找有無相關的建置檔案<h3 id="LFI"><a href="#LFI" class="headerlink" title="LFI"></a>LFI</h3></li>
+<li>發生在引用功能時</li>
+<li>PHP<ul>
+<li>include()</li>
+<li>require()</li>
+<li>include_once()</li>
+<li>require_once()</li>
+</ul>
+</li>
+<li>phpinfo()</li>
+<li>要檢視php原始碼，可以利用 <code>module=php://filter/convert.base64-encode/resource=index.php</code>這個語法<h2 id="XSS-Cross-Site-Scripting"><a href="#XSS-Cross-Site-Scripting" class="headerlink" title="XSS, Cross Site Scripting"></a>XSS, Cross Site Scripting</h2>因輸入未經過驗證，使使用者可以輸入攻擊性的程式碼<h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><h2 id="SQL-Injection"><a href="#SQL-Injection" class="headerlink" title="SQL Injection"></a>SQL Injection</h2><h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3><h3 id="NoSQL"><a href="#NoSQL" class="headerlink" title="NoSQL"></a>NoSQL</h3><h2 id="Command-Injection-RCE-Remote-Code-Execution"><a href="#Command-Injection-RCE-Remote-Code-Execution" class="headerlink" title="Command Injection / RCE, Remote Code Execution"></a>Command Injection / RCE, Remote Code Execution</h2><h1 id="reference"><a href="#reference" class="headerlink" title="reference:"></a>reference:</h1></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/splitline/How-to-Hack-Websites">https://github.com/splitline/How-to-Hack-Websites</a></li>
 </ul>
 
